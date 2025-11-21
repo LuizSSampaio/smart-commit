@@ -1,0 +1,15 @@
+{
+  "name": "smart-commit",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "cmd-ts": "^0.14.3"
+  }
+}
