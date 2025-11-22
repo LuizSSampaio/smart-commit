@@ -1,26 +1,38 @@
-import { command, option, optional, run, string, subcommands } from "cmd-ts"
+import { boolean, command, flag, option, optional, run, string, subcommands } from "cmd-ts"
+import { ConventionalCommit } from "./git/conventional-commit"
 
 const draft = command({
   name: 'draft',
   args: {
-    context: option({
-      long: 'context',
-      short: 'c',
-      type: optional(string)
+    summary: option({
+      long: 'summary',
+      short: 's',
+      type: string
     }),
     type: option({
       long: 'type',
       short: 't',
-      type: optional(string)
+      type: string
+    }),
+    breakingChange: flag({
+      long: 'breaking-change',
+      short: 'B',
+      type: boolean
     }),
     scope: option({
       long: 'scope',
-      short: 's',
+      short: 'S',
+      type: optional(string)
+    }),
+    body: option({
+      long: 'body',
+      short: 'b',
       type: optional(string)
     })
   },
   handler: (args) => {
-    console.log(args)
+    const commit = new ConventionalCommit(args.type, args.summary, args.breakingChange, args.scope, args.body)
+    console.log(commit.toString())
   }
 })
 
