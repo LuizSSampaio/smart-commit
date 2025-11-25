@@ -1,5 +1,7 @@
 package ai
 
+import "context"
+
 type Provider interface {
-	Generate(prompt string, model string) (string, error)
+	Generate(ctx context.Context, prompt string, model string) (string, error)
 }
